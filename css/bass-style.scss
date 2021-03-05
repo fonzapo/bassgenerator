@@ -1,0 +1,403 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap");
+
+$bg:#EEF1EF;
+$button-bg: #7D98A1;
+$p-bg:#5E6572;
+$select-bg:#A9B4C2;
+$border-color:#1C2321;
+$myBlack: #161616;
+$myWhite: #fafafa;
+
+@mixin button-style {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin: 5px 5px 5px 5px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: $button-bg;
+    color: $myWhite;
+    font-family: "Red Hat Display", sans-serif;
+    cursor: pointer;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+    transition: .2s;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0);
+    &:hover{
+        box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.3),
+        inset 1px 1px 5px rgba(0, 0, 0, 0.15),
+        -1px 0 4px white;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.158);
+    }
+}
+body {
+    font-family: "Red Hat Display", sans-serif;
+    font-size: 15px;
+    *{
+        color: $myBlack;
+    }
+}
+#main {
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+    background-color: $bg;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 5px 3px 15px 0px rgba($color: #000000, $alpha: 0.1);
+    display: flex;
+    max-width: 100%;
+    .popModal {
+        display: block !important;
+    }
+    #modalScreenShot {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba($color: #000000, $alpha: 0.5);
+        z-index: 999;
+        display: none;
+        #closeBtn {
+            position: absolute;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+            z-index: 1000;
+            color: #fff;
+            transition: all 0.2s;
+            border: 0px;
+            filter: invert(0);
+            background-color: rgba($color: #000000, $alpha: 0.5);
+            &:hover {
+                filter: invert(1);
+                border: 1px inset #fff;
+            }
+        }
+        canvas {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid #313131;
+        }
+    }
+    #selector {
+        * {
+            user-select: none;
+        }
+        hr{
+            margin: 10px 0;
+        }
+        min-width: 550px;
+        #inputGroup {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .radio-btn {
+                display: flex;
+                align-items: center;
+                margin: 5px;
+            }
+        }
+        #pickedScale {
+            #displayScaleCont{
+                p {
+                    width: max-content;
+                    margin: 3px 0;
+                    padding: 5px 15px;
+                    border-radius: 10px;
+                    color: $myBlack;
+                    font-size: 20px;
+                    font-weight: bold;
+                    :nth-child(1){
+                        font-style: italic;
+                        font-size: 15px;
+                    }
+                    :nth-child(2), :nth-child(3){
+                        background: $p-bg;
+                        padding: 3px 10px;
+                        border-radius: 10px;
+                        color: $myWhite;
+                        font-weight: normal;
+                    }
+                }
+            }
+            #degContainer {
+                display: flex;
+                justify-content: space-between;
+                #degFormat {
+                    display: flex;
+                    align-items: center;
+                }
+                #randDegCheckboxCont {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+        #timeSignatureCont {
+            display: flex;
+            align-items: flex-end;
+            :nth-child(1) {
+                display: flex;
+                align-items: baseline;
+                margin-right: 10px;
+            }
+            :nth-child(2) {
+                display: flex;
+                align-items: baseline;
+                margin-right: 10px;
+            }
+            :nth-child(3) {
+                display: flex;
+                align-items: baseline;
+                margin-right: 10px;
+            }
+            :nth-child(4) {
+                display: flex;
+                align-items: baseline;
+                margin-right: 10px;
+            }
+            :nth-child(5) {
+                display: flex;
+                align-items: baseline;
+                margin-right: 10px;
+            }
+        }
+        #rythmToInclude {
+            display: flex;
+            align-items: center;
+            hr {
+                height: 20px;
+            }
+            label {
+                font-size: 25px;
+            }
+        }
+        #silenceNoteChance{
+            display: flex;
+            align-items: center;
+        }
+        #buttonsContainer{
+            display: flex;
+        }
+        #errorContainer {
+            p {
+                color: #c20000;
+                font-weight: 700;
+                font-style: italic;
+            }
+        }
+        input[type="text"] {
+            width: 25px;
+            border-radius: 5px;
+            margin: 0 5px;
+            text-align: center;
+            border: 2px solid $border-color;
+            background: none;
+            color: $myBlack;
+            //cursor: pointer;
+        }
+        input[type="radio"]{
+            cursor: pointer;
+        }
+        button {
+            @include button-style;
+        }
+        select {
+            border: none;
+            border-radius: 5px;
+            padding: 2px;
+            margin: 5px;
+            background: $select-bg;
+            color: $myWhite;
+            font-weight: bold;
+            option{
+                color: $myWhite;
+                font-weight: bold;
+            }
+        }
+        h5 {
+            margin: 0;
+            font-size: 15px;
+        }
+    }
+    #sheetCont {
+        overflow-x: scroll;
+        button {
+            @include button-style;
+        }
+        #sheet {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding: 5px 0;
+            #takeScreenShot {
+                width: 200px;
+            }
+            .info {
+                font-weight: bold;
+                margin: 10px 0;
+                span{
+                    background-color: $p-bg;
+                    color: $myWhite;
+                    padding: 3px 10px;
+                    border-radius: 8px;
+                    margin: 0 5px;
+                }
+            }
+            .sheetlines {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                font-size: 50px;
+                z-index: 1;
+                hr {
+                    margin: 8px 0;
+                    border: inset 1px #000;
+                }
+            }
+            .bar-group {
+                display: inherit;
+                flex-direction: row;
+                height: min-content;
+                position: relative;
+                width: min-content;
+                margin: 25px 10px;
+                .bass-clef {
+                    font-size: 35px;
+                    transform: translateY(-3px);
+                    margin-right: 10px;
+                    z-index: 10;
+                }
+                .armor {
+                    font-size: 100%;
+                    font-size: 25px;
+                    position: relative;
+                    display: flex;
+                    margin-right: 10px;
+                    z-index: 10;
+                    .b♭ {
+                        transform: translateY(16px);
+                    }
+                    .e♭ {
+                        transform: translateY(1px);
+                    }
+                    .a♭ {
+                        transform: translateY(21px);
+                    }
+                    .d♭ {
+                        transform: translateY(6px);
+                    }
+                    .g♭ {
+                        transform: translateY(26px);
+                    }
+                    .c♭ {
+                        transform: translateY(11px);
+                    }
+                    .f♭ {
+                        transform: translateY(30px);
+                    }
+                    //sharps
+                    .b♯ {
+                        transform: translateY(23px);
+                    }
+                    .e♯ {
+                        transform: translateY(8px);
+                    }
+                    .a♯ {
+                        transform: translateY(28px);
+                    }
+                    .d♯ {
+                        transform: translateY(13px);
+                    }
+                    .g♯ {
+                        transform: translateY(-2px);
+                    }
+                    .c♯ {
+                        transform: translateY(18px);
+                    }
+                    .f♯ {
+                        transform: translateY(3px);
+                    }
+                }
+                .bar {
+                    display: inherit;
+                    flex-direction: inherit;
+                    z-index: 10;
+                    .time-signaure {
+                        display: inherit;
+                        flex-direction: column;
+                        justify-content: center;
+                        span {
+                            font-size: 25px;
+                            font-weight: bold;
+                        }
+                    }
+                    .rest-container {
+                        opacity: 1;
+                    }
+                    .note-container {
+                        font-size: 50px;
+                        position: relative;
+                        margin: 0 5px;
+                        display: flex;
+                        align-items: baseline;
+                        transform: translateY(20px);
+                        .note {
+                            font-weight: normal;
+                        }
+                        .alteration {
+                            font-size: 60%;
+                            font-weight: bold;
+                        }
+                    }
+                    .rest {
+                        font-size: 40px !important;
+                    }
+                    .c0 {
+                        &::before {
+                            content: "\01D117 ";
+                            position: absolute;
+                            font-size: 110%;
+                            top: 5px;
+                            width: 19px;
+                            overflow: hidden;
+                        }
+                    }
+                    .d0 {
+                        &::before {
+                            content: "\01D116 ";
+                            position: absolute;
+                            font-size: 110%;
+                            width: 19px;
+                            overflow: hidden;
+                        }
+                    }
+                    .e0 {
+                        &::before {
+                            content: "\01D116 ";
+                            position: absolute;
+                            font-size: 110%;
+                            width: 19px;
+                            overflow: hidden;
+                        }
+                    }
+                }
+                .bar-separator {
+                    width: 2px;
+                    background: #000;
+                    margin: 8px;
+                }
+            }
+        }
+    }
+}

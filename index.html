@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="/img/favicon.ico">
+    <title>Bass Generator</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="modalScreenShot" onclick="closeModal()">
+            <div id="closeBtn" onclick="closeModal()">x</div>
+        </div>
+        <div id="selector">
+            <div id="inputGroup"></div>
+            <div id="buttonsGroup">
+                <button title="Pick from selects above" class="button" id="selectFromList"
+                    onclick='pickFromSelected()'>Pick</button>
+                <button title="Pick a random scale" class="button" id="pickRandomBtn" onclick='chooseRandScale()'>Pick
+                    random</button>
+            </div>
+            <div id="pickedScale"></div>
+            <hr>
+            <div id="timeSignatureCont">    
+                <div>
+                    <h5 title="Default for binary is 4/ternary is 6">Time signature: </h5>
+                    <input title="Default for binary is 4/ternary is 6" id="timeSignatureInput" placeholder="4/6" type="text">
+                    <div>/ (4 or 8)</div>
+                </div>
+                <div>
+                    <label for="randomMetric">Random</label>
+                    <input id="randTimeCheckbox" type="checkbox" name="randomMetric">
+                </div>
+                <span>|</span>
+                <div>
+                    <label for="metric">Binary</label>
+                    <input id="binaryCheckbox" type="radio" name="metric" checked>
+                </div>
+                <div>
+                    <label for="metric">Ternary</label>
+                    <input id="ternaryCheckbox" type="radio" name="metric">
+                </div>
+            </div>
+            <hr>
+            <div id="rythmToInclude">
+                <label for="double">𝅘𝅥𝅯</label>
+                <input class="rythm-type" id="double" name="double" type="checkbox" checked>
+                <label for="doublePointee">𝅘𝅥𝅯.</label>
+                <input class="rythm-type" id="doublePointee" name="doublePointee" type="checkbox" checked>
+                <hr>
+                <label for="croche">𝅘𝅥𝅮</label>
+                <input class="rythm-type" id="croche" name="croche" type="checkbox" checked>
+                <label for="crochePointee">𝅘𝅥𝅮.</label>
+                <input class="rythm-type" id="crochePointee" name="crochePointee" type="checkbox" checked>
+                <hr>
+                <label for="noire">𝅘𝅥</label>
+                <input class="rythm-type" id="noire" name="noire" type="checkbox" checked>
+                <label for="noirePointee">𝅘𝅥.</label>
+                <input class="rythm-type" id="noirePointee" name="noirePointee" type="checkbox" checked>
+                <hr>
+                <label for="blanche">𝅗𝅥</label>
+                <input class="rythm-type" id="blanche" name="blanche" type="checkbox" checked>
+                <label for="blanchePointee">𝅗𝅥.</label>
+                <input class="rythm-type" id="blanchePointee" name="blanchePointee" type="checkbox" checked>
+                <hr>
+                <label for="ronde">𝅝</label>
+                <input class="rythm-type" id="ronde" name="ronde" type="checkbox" checked>
+                <hr>
+                <button id="uncheckAll" onclick="uncheckAll()">Uncheck all</button>
+            </div>
+            <hr>
+            <div id="silenceNoteChance" title="Default is 10">
+                <h5>Chance of getting a silent note: 1 / </h5>
+                <input id="silenceChanceInput" type="text" placeholder="10" title="Default is 10">
+            </div>
+            <hr>
+            <div id="buttonsContainer">
+                <button id='goBtn' onclick='createSheet()'>Create/Add 4 bars</button>
+                <button id='removeLast' onclick='removeLastBar()'>Remove last</button>
+                <button id='resetBtn' onclick='reset()'>Remove All</button>
+            </div>
+            <div id="errorContainer"></div>
+        </div>
+        <div id="sheetCont">
+            <div id="sheet"></div>
+            <div id="screenShotBtnCont"></div>
+        </div>
+    </div>
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/createscales.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/createsheet.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
