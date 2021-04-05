@@ -1,3 +1,4 @@
+//COUCOU j'ai fait un commit
 let notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 
 let allScales_arr = [];
