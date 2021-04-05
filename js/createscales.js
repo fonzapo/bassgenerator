@@ -1,4 +1,5 @@
 //COUCOU j'ai fait un commit
+//une autre mofid
 let notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 
 let allScales_arr = [];
